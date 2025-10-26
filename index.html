@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Solutions - Inverter Capacity Calculator</title>
+    <meta name="description" content="Solar inverter capacity calculator and quote system for residential and commercial solar installations">
+    <meta name="keywords" content="solar inverter, capacity calculator, solar quote, hybrid inverter, on-grid, off-grid">
+    <meta name="author" content="Solar Solutions">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-solar-panel"></i>
+                <span>EastGen Power Solutions</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-home">Home</a></li>
+                    <li><a href="#" class="nav-products">Products</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Find the Perfect Solar Inverter for Your Home</h1>
+            <p>Calculate the ideal inverter capacity based on your electricity consumption or get a personalized quote for your solar installation.</p>
+            
+            <div class="button-container">
+                <button class="btn btn-primary" id="inverterBtn">
+                    <i class="fas fa-calculator"></i> Inverter Capacity
+                </button>
+                <button class="btn btn-secondary" id="quoteBtn">
+                    <i class="fas fa-file-invoice-dollar"></i> Get Quote
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Marquee Section for Deye Products -->
+        <section class="marquee-section" id="deyeMarquee">
+            <div class="marquee-header">
+                <h3>Popular Deye Single Phase Residential Inverters</h3>
+                <p>High-quality inverters for your home energy needs</p>
+            </div>
+            <div class="marquee-container">
+                <div class="marquee" id="deyeMarqueeContent">
+                    <!-- Deye products will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <section class="calculator-section" id="calculatorSection">
+            <h2>Calculate Inverter Capacity</h2>
+            <form id="capacityForm">
+                <div class="form-group">
+                    <label>Select Your Bill Status:</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="monthly" name="billStatus" value="monthly" checked>
+                            <label for="monthly">Monthly</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="bimonthly" name="billStatus" value="bimonthly">
+                            <label for="bimonthly">Bimonthly</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="unitConsumption" id="consumptionLabel">Monthly Unit Consumption (kWh):</label>
+                    <input type="number" id="unitConsumption" min="1" required placeholder="Enter your electricity consumption">
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Your Location (for sunlight hours):</label>
+                    <select id="location">
+                        <option value="high">High Sunlight Region (5-6 hours/day)</option>
+                        <option value="medium" selected>Medium Sunlight Region (4-5 hours/day)</option>
+                        <option value="low">Low Sunlight Region (3-4 hours/day)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roofType">Roof Type:</label>
+                    <select id="roofType">
+                        <option value="flat">Flat Roof</option>
+                        <option value="pitched" selected>Pitched Roof</option>
+                        <option value="ground">Ground Mount</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Calculate Inverter Capacity & Area</button>
+            </form>
+            
+            <div class="result" id="result">
+                <h3>Recommended Solar System</h3>
+                <div class="result-grid">
+                    <div class="result-card">
+                        <div class="result-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="result-title">Inverter Capacity</div>
+                        <div class="result-value" id="capacityValue">0 kW</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-icon">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <div class="result-title">Solar Panel Capacity</div>
+                        <div class="result-value" id="panelCapacityValue">0 kW</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-icon">
+                            <i class="fas fa-ruler-combined"></i>
+                        </div>
+                        <div class="result-title">Non-Shaded Area Required</div>
+                        <div class="result-value" id="areaValue">0 sq ft</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="result-title">Daily Energy Generation</div>
+                        <div class="result-value" id="generationValue">0 kWh</div>
+                    </div>
+                </div>
+                
+                <div class="area-visualization">
+                    <h4>Area Visualization</h4>
+                    <p>This is approximately the non-shaded area you'll need for your solar panels:</p>
+                    
+                    <div class="area-comparison">
+                        <div class="area-item">
+                            <div class="area-size" id="tennisCourt">0%</div>
+                            <div class="area-desc">of a tennis court</div>
+                        </div>
+                        <div class="area-item">
+                            <div class="area-size" id="parkingSpace">0</div>
+                            <div class="area-desc">parking spaces</div>
+                        </div>
+                        <div class="area-item">
+                            <div class="area-size" id="bedroom">0%</div>
+                            <div class="area-desc">of a bedroom</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-note">
+                    <p><strong>Note:</strong> This calculation assumes standard 400W solar panels with 20% efficiency. 
+                    Actual requirements may vary based on panel type, orientation, and local conditions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section" id="quoteSection">
+            <h2>Get a Personalized Quote</h2>
+            <form id="quoteForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" required placeholder="Enter your address">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roofArea">Approximate Roof Area (sq ft)</label>
+                    <input type="number" id="roofArea" min="1" required placeholder="Enter your roof area">
+                </div>
+                
+                <div class="form-group">
+                    <label for="budget">Approximate Budget ($)</label>
+                    <input type="number" id="budget" min="1" required placeholder="Enter your budget">
+                </div>
+                
+                <div class="form-group">
+                    <label for="productInterest">Product of Interest</label>
+                    <select id="productInterest" required>
+                        <option value="">Select a product</option>
+                        <option value="on-grid">On-Grid Inverter</option>
+                        <option value="off-grid">Off-Grid Inverter</option>
+                        <option value="hybrid">Hybrid Inverter</option>
+                        <option value="bess">Battery Energy Storage System (BESS)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Additional Notes</label>
+                    <textarea id="notes" rows="4" placeholder="Any specific requirements or questions"></textarea>
+                </div>
+                
+                <button type="submit" class="calculate-btn">Submit Quote Request</button>
+            </form>
+        </section>
+
+        <section class="products-section" id="productsSection">
+            <h2>Our Products</h2>
+            
+            <div class="products-nav">
+                <button class="product-nav-btn active" data-category="all">All Products</button>
+                <button class="product-nav-btn" data-category="on-grid">On-Grid Inverters</button>
+                <button class="product-nav-btn" data-category="off-grid">Off-Grid Inverters</button>
+                <button class="product-nav-btn" data-category="hybrid">Hybrid Inverters</button>
+                <button class="product-nav-btn" data-category="bess">BESS</button>
+            </div>
+            
+            <div class="subcategory-nav" id="subcategoryNav" style="display: none;">
+                <!-- Subcategory buttons will be dynamically loaded here -->
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Solar Solutions. All rights reserved.</p>
+            <p>Contact us: info@solarsolutions.com | +1 (555) 123-4567</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
