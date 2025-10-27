@@ -244,6 +244,7 @@ const quoteBtn = document.getElementById('quoteBtn');
 const calculatorSection = document.getElementById('calculatorSection');
 const quoteSection = document.getElementById('quoteSection');
 const productsSection = document.getElementById('productsSection');
+const expertiseSection = document.getElementById('expertiseSection');
 const capacityForm = document.getElementById('capacityForm');
 const result = document.getElementById('result');
 const capacityValue = document.getElementById('capacityValue');
@@ -259,6 +260,7 @@ const productNavBtns = document.querySelectorAll('.product-nav-btn');
 const subcategoryNav = document.getElementById('subcategoryNav');
 const navHome = document.querySelector('.nav-home');
 const navProducts = document.querySelector('.nav-products');
+const navExpertise = document.querySelector('.nav-expertise');
 const tennisCourt = document.getElementById('tennisCourt');
 const parkingSpace = document.getElementById('parkingSpace');
 const bedroom = document.getElementById('bedroom');
@@ -274,6 +276,7 @@ inverterBtn.addEventListener('click', () => {
     calculatorSection.classList.add('active');
     quoteSection.classList.remove('active');
     productsSection.classList.remove('active');
+    expertiseSection.classList.remove('active');
     deyeMarquee.classList.remove('active');
 });
 
@@ -281,6 +284,7 @@ quoteBtn.addEventListener('click', () => {
     quoteSection.classList.add('active');
     calculatorSection.classList.remove('active');
     productsSection.classList.remove('active');
+    expertiseSection.classList.remove('active');
     deyeMarquee.classList.remove('active');
 });
 
@@ -289,6 +293,7 @@ navHome.addEventListener('click', (e) => {
     calculatorSection.classList.remove('active');
     quoteSection.classList.remove('active');
     productsSection.classList.remove('active');
+    expertiseSection.classList.remove('active');
     deyeMarquee.classList.remove('active');
 });
 
@@ -297,8 +302,18 @@ navProducts.addEventListener('click', (e) => {
     productsSection.classList.add('active');
     calculatorSection.classList.remove('active');
     quoteSection.classList.remove('active');
+    expertiseSection.classList.remove('active');
     deyeMarquee.classList.remove('active');
     loadProducts('all', 'all');
+});
+
+navExpertise.addEventListener('click', (e) => {
+    e.preventDefault();
+    expertiseSection.classList.add('active');
+    calculatorSection.classList.remove('active');
+    quoteSection.classList.remove('active');
+    productsSection.classList.remove('active');
+    deyeMarquee.classList.remove('active');
 });
 
 // Update label based on bill status selection
@@ -492,6 +507,7 @@ function loadProducts(category, subcategory) {
             quoteSection.classList.add('active');
             calculatorSection.classList.remove('active');
             productsSection.classList.remove('active');
+            expertiseSection.classList.remove('active');
             deyeMarquee.classList.remove('active');
             
             document.getElementById('productInterest').value = product.category;
